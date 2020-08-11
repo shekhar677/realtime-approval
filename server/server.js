@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('api response')
+  res.json(require('./package.json'))
 })
 
 app.use('/user', userRoutes);
