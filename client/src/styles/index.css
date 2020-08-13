@@ -2,3 +2,40 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+.outline-0 {
+  outline: none !important;
+}
+
+.spacer {
+  flex: 1
+}
+
+.relative {
+  position: relative;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+.notification-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: white;
+  cursor: pointer;
+}
+
+.notify-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

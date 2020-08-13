@@ -26,10 +26,24 @@ exports.create_department = (req, res, next) => {
 }
 
 exports.all_department = (req, res, next) => {
- Department.find().exec().then(department => {
-   return res.status(200).json({
-     message: 'success',
-     data: department
-   })
- })
+  const exclude = req.query.exclude;
+  const departmentId = req.query.departmentId;
+  const query = exclude? { _id: { $ne: departmentId } } : {};
+
+  Department.find(query).populate('users', '-password').exec().then(department => {
+    return res.status(200).json({
+      message: 'success',
+      data: department
+    })
+  })
+}
+
+exports.department_users = (req, res, next) => {
+  const departmentId = req.params.departmentId;
+  Department.find({ _id: departmentId }).populate('users', '_id email department').exec().then(users => {
+    return res.status(200).json({
+      message: 'success',
+      data: users
+    })
+  })
 }

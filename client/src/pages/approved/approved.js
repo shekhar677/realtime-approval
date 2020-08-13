@@ -3,7 +3,7 @@ import Navbar from '../../components/navbar';
 import DataService from '../../services/data';
 import AuthService from '../../services/auth';
 
-function Pending() {
+function Approved() {
   const [formData, setFormData] = useState([])
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function Pending() {
   }, []);
 
   const getForms = async () => {
-    DataService.getFormsForUser(AuthService.getCurrentUserId(), 'pending').then(res => {
+    DataService.getFormsForUser(AuthService.getCurrentUserId(), 'approved').then(res => {
       setFormData(res.data.data)
     })
   }
@@ -21,7 +21,7 @@ function Pending() {
       <Navbar/>
       <div className="p-4 min-h-screen flex justify-center items-center">
         <div className="m-2 bg-white rounded-md border p-4 shadow-md w-5/12">
-          <h1 className="text-center text-2xl">Pending Forms</h1>
+          <h1 className="text-center text-2xl">Approved Forms</h1>
           <hr className="mt-3 mb-6"/>
           { formData.length? formData.map((form, i) => 
             <div key={i} className="m-3 cursor-pointer hover:bg-gray-200 bg-white rounded-md border p-4 shadow-md flex items-center">
@@ -58,4 +58,4 @@ function Pending() {
   );
 }
 
-export default Pending;
+export default Approved;
