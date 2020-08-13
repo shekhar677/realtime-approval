@@ -21,10 +21,10 @@ function Request() {
       <Navbar/>
       <div className="p-4 min-h-screen flex justify-center items-center">
         <div className="m-2 bg-white rounded-md border p-4 shadow-md w-5/12">
-          <h1 className="text-center text-2xl">Request For Approval</h1>
+          <h1 className="text-center text-gray-700 text-2xl">Request For Approval</h1>
           <hr className="mt-3 mb-6"/>
           { formData.length? formData.map((form, i) => 
-            <div key={i} className="m-3 cursor-pointer hover:bg-gray-200 bg-white rounded-md border p-4 shadow-md flex items-center">
+            <div key={i} className="m-3 cursor-pointer hover:bg-green-200 bg-white rounded-md border p-4 shadow-md flex items-center">
               <div className="w-16 h-16 rounded-full bg-gray-400 text-white text-4xl flex justify-center items-center uppercase mr-4">{form.created_by.email.split("")[0]}</div>
               <div>
                 <div className="text-gray-700 flex w-full mb-1">
