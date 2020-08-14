@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  API_URL = 'https://server.com'
+  API_URL = 'https://realtime-approval.herokuapp.com'
 }
 
 class AuthService {
