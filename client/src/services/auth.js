@@ -2,7 +2,7 @@ import axios from "axios";
 
 let API_URL;
 if (process.env.NODE_ENV === 'development') {
-  API_URL = 'ttp://localhost:4000'
+  API_URL = 'http://localhost:4000'
 }
 
 if (process.env.NODE_ENV === 'production') {

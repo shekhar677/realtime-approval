@@ -3,7 +3,7 @@ import authHeader from './token';
 
 let API_URL;
 if (process.env.NODE_ENV === 'development') {
-  API_URL = 'ttp://localhost:4000'
+  API_URL = 'h//localhost:4000'
 }
 
 if (process.env.NODE_ENV === 'production') {

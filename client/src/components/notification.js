@@ -5,7 +5,7 @@ function Navbar() {
   const [notification, setNotification] = useState(true);
   let ENDPOINT;
   if (process.env.NODE_ENV === 'development') {
-    ENDPOINT = 'ttp://localhost:4000'
+    ENDPOINT = 'http://localhost:4000'
   }
   
   if (process.env.NODE_ENV === 'production') {

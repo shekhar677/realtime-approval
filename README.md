@@ -20,4 +20,4 @@ deployed on: https://www.heroku.com/
 ---
 
 ### Heroku (admin only)
-> command: deploy to heroku: git subtree push --prefix server heroku master
+> deploy to heroku: git subtree push --prefix server heroku master
