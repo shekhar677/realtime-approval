@@ -31,8 +31,8 @@ function Login() {
     <div className="min-h-screen flex justify-center items-center">
       <form onSubmit={ handleLogin }>
         <div className="bg-white rounded p-6 flex flex-col shadow-md" style={{width: '25rem'}}>
-          <input onChange={handleChange} className="rounded-md px-3 py-2 my-2 border" type="email" name="email" id="email" placeholder="Email"/>
-          <input onChange={handleChange} className="rounded-md px-3 py-2 my-2 border" type="text" name="password" id="password" placeholder="Password"/>
+          <input required onChange={handleChange} className="rounded-md px-3 py-2 my-2 border" type="email" name="email" id="email" placeholder="Email"/>
+          <input required onChange={handleChange} className="rounded-md px-3 py-2 my-2 border" type="password" name="password" id="password" placeholder="Password"/>
           <button className="px-3 py-2 mt-4 bg-green-400 shadow rounded-md text-white font-weight-bold">Login</button>
         </div>
       </form>

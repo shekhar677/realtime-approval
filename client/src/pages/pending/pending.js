@@ -11,7 +11,7 @@ function Pending() {
   }, []);
 
   const getForms = async () => {
-    DataService.getFormsForUser(AuthService.getCurrentUserId(), 'pending').then(res => {
+    DataService.getFormsCreatedByUser(AuthService.getCurrentUserId(), 'pending').then(res => {
       setFormData(res.data.data)
     })
   }

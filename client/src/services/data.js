@@ -3,7 +3,7 @@ import authHeader from './token';
 
 let API_URL;
 if (process.env.NODE_ENV === 'development') {
-  API_URL = 'h//localhost:4000'
+  API_URL = 'http://localhost:4000'
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -28,13 +28,17 @@ class DataService {
     return axios.get(API_URL + `/form/${departmentId}?status=${status}`, { headers: authHeader() })
   }
 
-  getFormsForUser(userId, status) {
+  getFormsCreatedByUser(userId, status) {
     return axios.get(API_URL + `/form/user/${userId}?status=${status}`, { headers: authHeader() })
   }
 
-  // approveForm(data) {
-  //   return axios.get(API_URL + `/form/user/${data}?status=${status}`, { headers: authHeader() })
-  // }
+  getFormsAssignedToUser(userId, status) {
+    return axios.get(API_URL + `/form/assigned/${userId}?status=${status}`, { headers: authHeader() })
+  }
+
+  updateFormStatus(formId, status) {
+    return axios.post(API_URL + `/form/${formId}/${status}`, null, { headers: authHeader() })
+  }
 }
 
 export default new DataService();

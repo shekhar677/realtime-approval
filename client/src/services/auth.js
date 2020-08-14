@@ -42,11 +42,19 @@ class AuthService {
   }
 
   getCurrentUserId() {
-    return JSON.parse(localStorage.getItem('user')).user._id;
+    if (this.authenticated()) {
+      return JSON.parse(localStorage.getItem('user')).user._id;
+    } else {
+      return null;
+    }
   }
 
   getCurrentDepartmentId() {
-    return JSON.parse(localStorage.getItem('user')).user.department;
+    if (this.authenticated()) {
+      return JSON.parse(localStorage.getItem('user')).user.department;
+    } else {
+      return null;
+    }
   }
 
   authenticated() {

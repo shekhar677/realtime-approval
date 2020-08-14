@@ -11,7 +11,7 @@ function Approved() {
   }, []);
 
   const getForms = async () => {
-    DataService.getFormsForUser(AuthService.getCurrentUserId(), 'approved').then(res => {
+    DataService.getFormsCreatedByUser(AuthService.getCurrentUserId(), 'approved').then(res => {
       setFormData(res.data.data)
     })
   }

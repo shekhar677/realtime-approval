@@ -11,7 +11,7 @@ function Rejected() {
   }, []);
 
   const getForms = async () => {
-    DataService.getFormsForUser(AuthService.getCurrentUserId(), 'rejected').then(res => {
+    DataService.getFormsCreatedByUser(AuthService.getCurrentUserId(), 'rejected').then(res => {
       setFormData(res.data.data)
     })
   }
