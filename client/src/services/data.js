@@ -1,7 +1,14 @@
 import axios from 'axios';
 import authHeader from './token';
 
-const API_URL = 'http://localhost:4000';
+let API_URL;
+if (process.env.NODE_ENV === 'development') {
+  API_URL = 'ttp://localhost:4000'
+}
+
+if (process.env.NODE_ENV === 'production') {
+  API_URL = 'https://server.com'
+}
 
 class DataService {
 
@@ -22,6 +29,10 @@ class DataService {
   }
 
   getFormsForUser(userId, status) {
+    return axios.get(API_URL + `/form/user/${userId}?status=${status}`, { headers: authHeader() })
+  }
+
+  approveForm(data) {
     return axios.get(API_URL + `/form/user/${userId}?status=${status}`, { headers: authHeader() })
   }
 }
