@@ -19,6 +19,5 @@ deployed on: https://www.heroku.com/
 
 ---
 
-### commnad to deploy server to heroku (because server is in sub-directory and heroku deploys project from root directory)
-
+### Heroku (admin only)
 > command: deploy to heroku: git subtree push --prefix server heroku master
