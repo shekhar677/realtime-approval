@@ -78,3 +78,10 @@ exports.getFormsForUser = (req, res, next) => {
     });
   })
 }
+
+exports.updateStatus = (req, res, next) => {
+  const formId = req.params.formId;
+  const status = req.params.status;
+
+  // update form status login
+}
