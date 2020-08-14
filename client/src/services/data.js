@@ -32,9 +32,9 @@ class DataService {
     return axios.get(API_URL + `/form/user/${userId}?status=${status}`, { headers: authHeader() })
   }
 
-  approveForm(data) {
-    return axios.get(API_URL + `/form/user/${userId}?status=${status}`, { headers: authHeader() })
-  }
+  // approveForm(data) {
+  //   return axios.get(API_URL + `/form/user/${data}?status=${status}`, { headers: authHeader() })
+  // }
 }
 
 export default new DataService();
