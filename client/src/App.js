@@ -35,7 +35,7 @@ function App() {
       <div className="min-h-screen bg-gray-200">
         <Router>
           <Switch>
-            <Route path="/" component={ Form }></Route>
+            <Route path="/" exact component={ Form }></Route>
             <Route path="/pending" component={ Pending }></Route>
             <Route path="/approved" component={ Approved }></Route>
             <Route path="/request" component={ Request }></Route>
