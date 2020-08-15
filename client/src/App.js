@@ -35,6 +35,7 @@ function App() {
       setLoader(true);
       return config
     }, function (error) {
+      setLoader(false);
       return Promise.reject(error);
     });
     
@@ -42,6 +43,7 @@ function App() {
       setLoader(false);
       return response;
     }, function (error) {
+      setLoader(false);
       return Promise.reject(error);
     });
   }
