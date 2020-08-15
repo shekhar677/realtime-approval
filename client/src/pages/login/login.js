@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import AuthService from '../../services/auth'
 
@@ -8,7 +8,18 @@ function Login() {
     email: '',
     password: ''
   }
-  const [formData, setFormData] = useState(initialFormData)
+  const [formData, setFormData] = useState(initialFormData);
+
+  useEffect(() => {
+    if (AuthService.authenticated()) {
+      sendToHome();
+    }
+  }, []);
+
+  function sendToHome() {
+    history.push('/')
+  }
+
   const handleChange = (e) => {
     setFormData({
       ...formData,

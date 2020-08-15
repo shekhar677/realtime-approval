@@ -29,8 +29,8 @@ function App() {
     }
   }
 
-  // if (isAuthenticated) {
-  //   console.log(isAuthenticated)
+  // if (AuthService.authenticated()) {
+  //   console.log(AuthService.authenticated())
     return (
       <div className="min-h-screen bg-gray-200">
         <Router>
@@ -40,17 +40,17 @@ function App() {
             <Route path="/approved" component={ Approved }></Route>
             <Route path="/request" component={ Request }></Route>
             <Route path="/rejected" component={ Rejected }></Route>
-            <Route path="/login" component={ Login }></Route>
+            <Route exact path="/login" component={ Login }></Route>
           </Switch>
         </Router>
       </div>
     )
-    // } else {
-      //   return (
-        //     <div className="min-h-screen bg-gray-200">
-        //       <Router>
-        // <Redirect to="/login" />
-  //         <Route path="/login" component={ Login }></Route>
+  // } else {
+  //   return (
+  //     <div className="min-h-screen bg-gray-200">
+  //       <Router>
+  //         <Redirect to="/login" />
+  //         <Route exact path="/login" component={ Login }></Route>
   //       </Router>
   //     </div>
   //   );

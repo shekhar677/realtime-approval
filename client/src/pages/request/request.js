@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Navbar from '../../components/navbar';
 import DataService from '../../services/data';
 import AuthService from '../../services/auth';
 
 function Request() {
+  const history = useHistory();
   const [formData, setFormData] = useState([]);
   const [modal, setModal] = useState(false);
   const [formId, setFormId] = useState('');
 
   useEffect(() => {
     getForms();
+    if (!AuthService.authenticated()) {
+      logoutUser();
+    }
   }, []);
+
+  function logoutUser() {
+    history.push('/login')
+  }
 
   const getForms = async () => {
     DataService.getFormsAssignedToUser(AuthService.getCurrentUserId(), 'pending').then(res => {

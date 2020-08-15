@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/navbar';
 import DataService from '../../services/data';
 import AuthService from '../../services/auth';
+import { useHistory } from 'react-router-dom';
 
 function Home() {
+  const history = useHistory();
   const initialFormData = {
     department: '',
     assigned_to: '',
@@ -31,8 +33,14 @@ function Home() {
   useEffect(() => {
     if (AuthService.authenticated()) {
       getDepartment();
+    } else {
+      logoutUser();
     }
   }, []);
+
+  function logoutUser() {
+    history.push('/login')
+  }
 
   async function getDepartment() {
     DataService.getDepartment(AuthService.getCurrentUser().user.department).then(res => {
