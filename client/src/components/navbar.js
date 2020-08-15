@@ -19,6 +19,7 @@ function Navbar() {
   const [notification, setNotification] = useState(false);
   const [notificationData, setNotificationData] = useState([]);
   const [modal, setModal] = useState(false);
+  const [drawer, setDrawer] = useState(false);
 
   useEffect(() => {
     listenForNotification();
@@ -101,23 +102,54 @@ function Navbar() {
     return text;
   }
 
+  function toggleDrawer() {
+    setDrawer(!drawer);
+  }
+
   return (
-    <div className="shadow-lg bg-green-400 p-3 flex items-center">
+    <div className="shadow-lg bg-green-400 p-4 flex items-center md:w-full">
       <Snackbar status={notification} />
-      <Link to="/"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/'? ' bg-green-500 text-white': ' text-gray-800')}>Form</button></Link>
-      <Link to="/request"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/request'? ' bg-green-500 text-white': ' text-gray-800')}>Requested</button></Link>
-      <Link to="/pending"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/pending'? ' bg-green-500 text-white': ' text-gray-800')}>Pending</button></Link>
-      <Link to="/approved"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/approved'? ' bg-green-500 text-white': ' text-gray-800')}>Approved</button></Link>
-      <Link to="/rejected"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/rejected'? ' bg-green-500 text-white': ' text-gray-800')}>Rejected</button></Link>
+
+      <div onClick={toggleDrawer} className="hover:bg-green-500 cursor-pointer rounded-full p-2">
+        <svg className="w-6 h-6 cursor-pointer md:hidden" viewBox="0 -53 384 384" xmlns="http://www.w3.org/2000/svg"><path d="M368 154.667969H16c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0M368 32H16C7.167969 32 0 24.832031 0 16S7.167969 0 16 0h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0M368 277.332031H16c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg>
+      </div>
+
+      {drawer? (<div className="block md:hidden w-64 bg-green-400 p-3 shadow-lg fixed left-0 top-0 bottom-0">
+      <div className="flex">
+        <div className="spacer"></div>
+        <div onClick={toggleDrawer} className="hover:bg-green-500 cursor-pointer rounded-full p-2">
+          <svg className="w-5 h-5 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 409.806 409.806"><path d="M228.929 205.01L404.596 29.343c6.78-6.548 6.968-17.352.42-24.132-6.548-6.78-17.352-6.968-24.132-.42-.142.137-.282.277-.42.42L204.796 180.878 29.129 5.21c-6.78-6.548-17.584-6.36-24.132.42-6.388 6.614-6.388 17.099 0 23.713L180.664 205.01 4.997 380.677c-6.663 6.664-6.663 17.468 0 24.132 6.664 6.662 17.468 6.662 24.132 0l175.667-175.667 175.667 175.667c6.78 6.548 17.584 6.36 24.132-.42 6.387-6.614 6.387-17.099 0-23.712L228.929 205.01z"/></svg>
+        </div>
+      </div>
+      <div className="mt-4 flex flex-col h-full">
+        <Link to="/"><button className={"w-full outline-0 px-3 py-2 my-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/'? ' bg-green-500 text-white': ' text-gray-800')}>Form</button></Link>
+        <Link to="/request"><button className={"w-full outline-0 px-3 py-2 my-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/request'? ' bg-green-500 text-white': ' text-gray-800')}>Requested</button></Link>
+        <Link to="/pending"><button className={"w-full outline-0 px-3 py-2 my-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/pending'? ' bg-green-500 text-white': ' text-gray-800')}>Pending</button></Link>
+        <Link to="/approved"><button className={"w-full outline-0 px-3 py-2 my-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/approved'? ' bg-green-500 text-white': ' text-gray-800')}>Approved</button></Link>
+        <Link to="/rejected"><button className={"w-full outline-0 px-3 py-2 my-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/rejected'? ' bg-green-500 text-white': ' text-gray-800')}>Rejected</button></Link>
+
+        <button onClick={logoutUser} className={"w-full outline-0 px-3 py-2 mt-6 hover:bg-green-300 rounded-md text-gray-800 hover:text-white font-medium"}>Logout</button>
+      </div>
+      </div>) : null}
+
+      <div className="hidden md:block">
+        <Link to="/"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/'? ' bg-green-500 text-white': ' text-gray-800')}>Form</button></Link>
+        <Link to="/request"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/request'? ' bg-green-500 text-white': ' text-gray-800')}>Requested</button></Link>
+        <Link to="/pending"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/pending'? ' bg-green-500 text-white': ' text-gray-800')}>Pending</button></Link>
+        <Link to="/approved"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/approved'? ' bg-green-500 text-white': ' text-gray-800')}>Approved</button></Link>
+        <Link to="/rejected"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/rejected'? ' bg-green-500 text-white': ' text-gray-800')}>Rejected</button></Link>
+      </div>
       <div className="spacer"></div>
+      <p>{drawer}</p>
       <div className="relative mr-3">
         <svg onClick={updateNotification} className="w-6 h-6 cursor-pointer" style={{fill: '#2d3748'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416 416"><path d="M208 416c23.573 0 42.667-19.093 42.667-42.667h-85.333C165.333 396.907 184.427 416 208 416zM336 288V181.333c0-65.6-34.88-120.32-96-134.827V32c0-17.707-14.293-32-32-32s-32 14.293-32 32v14.507c-61.12 14.507-96 69.227-96 134.827V288l-42.667 42.667V352h341.333v-21.333L336 288z"/></svg>
         <div onClick={updateNotification} className="cursor-pointer absolute w-3 h-3 bg-red-600 rounded-full select-none" style={{top:'0.3rem', right:'-0.1rem', display: notification? 'block' : 'none'}}></div>
       </div>
-      <button onClick={logoutUser} className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md text-gray-800 hover:text-white font-medium"}>Logout</button>
+
+      <button onClick={logoutUser} className={"hidden md:block outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md text-gray-800 hover:text-white font-medium"}>Logout</button>
 
       <div className="bg-red-600 p-4 fixed inset-0 flex h-screen justify-center items-center w" style={{ display: modal? "flex" : "none", background: 'rgba(0,0,0,0.7)' }}>
-        <div className="bg-white rounded-md border p-4 px-6 w-1/2">
+        <div className="bg-white rounded-md border p-4 px-6 w-full sm:w-1/2 md:w-2/5 lg:w-3/12">
           <div className="flex mb-5">
             <div className="spacer"></div>
             <svg onClick={closeDialog} className="w-3 h-3 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 409.806 409.806"><path d="M228.929 205.01L404.596 29.343c6.78-6.548 6.968-17.352.42-24.132-6.548-6.78-17.352-6.968-24.132-.42-.142.137-.282.277-.42.42L204.796 180.878 29.129 5.21c-6.78-6.548-17.584-6.36-24.132.42-6.388 6.614-6.388 17.099 0 23.713L180.664 205.01 4.997 380.677c-6.663 6.664-6.663 17.468 0 24.132 6.664 6.662 17.468 6.662 24.132 0l175.667-175.667 175.667 175.667c6.78 6.548 17.584 6.36 24.132-.42 6.387-6.614 6.387-17.099 0-23.712L228.929 205.01z"/></svg>

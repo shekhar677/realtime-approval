@@ -81,8 +81,8 @@ function Home() {
     <div>
       <Navbar/>
       <div className="p-4 flex min-h-screen justify-center items-center">
-        <form onSubmit={handleForm}>
-          <div className="bg-white rounded p-6 flex flex-col shadow-md" style={{width: '25rem'}}>
+        <form onSubmit={handleForm} className="w-full sm:w-1/2 lg:w-3/12">
+          <div className="bg-white rounded p-6 flex flex-col shadow-md w-full">
             <div className="p-2 flex flex-col text-gray-700 mb-1">
               <label className="text-sm ml-2 mb-2 text-gray-600">Department</label>
               <select required defaultValue={'DEFAULT'} className="border rounded-md px-3 py-2 capitalize" name="department" id="department" onChange={handleChange}>
