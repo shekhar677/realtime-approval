@@ -70,8 +70,19 @@ function Navbar() {
     history.push('/login');
   }
 
-  function goToRequestedPage() {
-    history.push('/request')
+  function goToRequestedPage(status) {
+    if (status === 'pending') {
+      history.push('/pending')
+    } else if (status === 'approved') {
+      history.push('/approved')
+    } else if (status === 'requested') {
+      history.push('/request')
+    } else if (status === 'rejected') {
+      history.push('/rejected')
+    } else {
+      history.push('/')
+    }
+    closeDialog()
   }
 
   function formStatusText(status) {
@@ -92,7 +103,7 @@ function Navbar() {
 
   return (
     <div className="shadow-lg bg-green-400 p-3 flex items-center">
-      <Snackbar status={notification} message={notificationData} />
+      <Snackbar status={notification} />
       <Link to="/"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/'? ' bg-green-500 text-white': ' text-gray-800')}>Form</button></Link>
       <Link to="/request"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/request'? ' bg-green-500 text-white': ' text-gray-800')}>Requested</button></Link>
       <Link to="/pending"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/pending'? ' bg-green-500 text-white': ' text-gray-800')}>Pending</button></Link>
@@ -113,7 +124,7 @@ function Navbar() {
           </div>
           <div className="p-2">
             { notificationData.length? notificationData.map(notification => 
-              <div onClick={goToRequestedPage} className="bg-gray-200 shadow-md border p-3 cursor-pointer rounded-md hover:bg-green-200 my-2">
+              <div onClick={() => goToRequestedPage(notification.status)} className="bg-gray-200 shadow-md border p-3 cursor-pointer rounded-md hover:bg-green-200 my-2">
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-xl text-gray-700 mb-1">{ formStatusText(notification.status) }</p>
