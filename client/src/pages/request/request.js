@@ -11,9 +11,10 @@ function Request() {
   const [formId, setFormId] = useState('');
 
   useEffect(() => {
-    getForms();
     if (!AuthService.authenticated()) {
       logoutUser();
+    } else {
+      getForms();
     }
   }, []);
 

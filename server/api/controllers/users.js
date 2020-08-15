@@ -5,6 +5,7 @@ const User = require('../models/users');
 const Department = require('../models/department');
 const { JWT_KEY } = require('../const');
 const department = require('../models/department');
+const { deleteOne } = require('../models/users');
 
 exports.user_signup = (req, res, next) => {
   User.find({ email: req.body.email }).exec().then(user => {
@@ -82,7 +83,7 @@ exports.user_login = (req, res, next) => {
             },
             JWT_KEY,
             {
-              expiresIn: "24h"
+              expiresIn: "2 days"
             }
           );
 
@@ -106,4 +107,30 @@ exports.user_login = (req, res, next) => {
       message: 'failed to execute: '+err
     })
   })
+}
+
+exports.validate_user = async (req, res, next) => {
+  const token = req.body.token;
+
+  if (token) {
+    jwt.verify(token, require('../const').JWT_KEY, (err, decoded) => {
+      if (err) {
+        return res.status(200).json({
+          message: 'token expired',
+          status: false
+        })
+      }
+      if (decoded) {
+        return res.status(200).json({
+          message: 'token is valid',
+          status: true
+        })
+      }
+    });
+  } else {
+    return res.status(409).json({
+      message: 'token is required',
+      status: false
+    })
+  }
 }

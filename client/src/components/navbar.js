@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, Link, useLocation } from 'react-router-dom';
 import AuthService from '../services/auth';
 import socketIOClient from "socket.io-client";
+import Snackbar from '../components/snackbar';
 
 function Navbar() {
   let ENDPOINT;
@@ -91,6 +92,7 @@ function Navbar() {
 
   return (
     <div className="shadow-lg bg-green-400 p-3 flex items-center">
+      <Snackbar status={notification} message={notificationData} />
       <Link to="/"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/'? ' bg-green-500 text-white': ' text-gray-800')}>Form</button></Link>
       <Link to="/request"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/request'? ' bg-green-500 text-white': ' text-gray-800')}>Requested</button></Link>
       <Link to="/pending"><button className={"outline-0 px-3 py-2 mx-2 hover:bg-green-500 rounded-md hover:text-white font-medium"+(location.pathname === '/pending'? ' bg-green-500 text-white': ' text-gray-800')}>Pending</button></Link>

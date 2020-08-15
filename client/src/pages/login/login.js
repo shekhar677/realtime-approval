@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import AuthService from '../../services/auth'
+import AuthService from '../../services/auth';
 
 function Login() {
   const history = useHistory();

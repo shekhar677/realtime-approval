@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, useHistory, Redirect } from 'react-router-dom';
+import axios from 'axios';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Form from './pages/form/form';
 import Pending from './pages/pending/pending';
 import Approved from './pages/approved/approved';
 import Request from './pages/request/request';
 import Rejected from './pages/rejected/rejected';
 import Login from './pages/login/login';
-import Register from './pages/register/register';
+import Loader from './components/loader';
 import AuthService from './services/auth';
 
 function App() {
-  const history = useHistory();
   const [isAuthenticated, setAuthenticated] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
-    // logout user if token is not present
+    axiosInterceptor();
     onLoad();
   }, []);
 
-  async function onLoad() {
+  function onLoad() {
     if (!isAuthenticated) {
       // redirect to login page
     }
@@ -29,11 +30,28 @@ function App() {
     }
   }
 
+  function axiosInterceptor() {
+    axios.interceptors.request.use(function (config) {  
+      setLoader(true);
+      return config
+    }, function (error) {
+      return Promise.reject(error);
+    });
+    
+    axios.interceptors.response.use(function (response) {
+      setLoader(false);
+      return response;
+    }, function (error) {
+      return Promise.reject(error);
+    });
+  }
+
   // if (AuthService.authenticated()) {
   //   console.log(AuthService.authenticated())
     return (
       <div className="min-h-screen bg-gray-200">
         <Router>
+          <Loader status={loader} />
           <Switch>
             <Route path="/" exact component={ Form }></Route>
             <Route path="/pending" component={ Pending }></Route>
